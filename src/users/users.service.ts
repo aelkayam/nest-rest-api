@@ -44,8 +44,8 @@ export class UsersService {
     return allUsers;
   }
 
-  findOne(id: string) {
-    return this.users.find((user) => user.id === parseInt(id));
+  findOne(id: number) {
+    return this.users.find((user) => user.id === id);
   }
 
   create(user: {
@@ -64,7 +64,7 @@ export class UsersService {
   }
 
   update(
-    id: string,
+    id: number,
     updatedUser: {
       name?: string;
       email?: string;
@@ -72,7 +72,7 @@ export class UsersService {
     },
   ) {
     this.users = this.users.map((user) => {
-      if (user.id === parseInt(id)) {
+      if (user.id === id) {
         return {
           ...user,
           ...updatedUser,
@@ -84,9 +84,9 @@ export class UsersService {
     return this.findOne(id);
   }
 
-  delete(id: string) {
+  delete(id: number) {
     const removedUser = this.findOne(id);
-    this.users = this.users.filter((user) => user.id !== parseInt(id));
+    this.users = this.users.filter((user) => user.id !== id);
 
     return removedUser;
   }
